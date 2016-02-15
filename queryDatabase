@@ -1,0 +1,26 @@
+var mysql = require('mysql');
+var requestHandlers=require("./requestHandlers");
+
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'johan',
+    password: 'Jag1337',
+    database: 'bilverkstaden'
+});
+
+connection.connect();
+
+function showSubmission(response, key, body) {
+	var queryString = 'select Costumer as kund, Invoice as Faktura, Paid as Betald, Car as Bil, PickedUp as Hamtad from Submission  where Id = ' + key;
+	var query = connection.query(queryString, function(err, result) {
+		if(err) {
+			console.log(err);
+			return;
+		}
+		console.log(result);
+		requestHandlers.printResult(response, result, body);
+		
+
+	});
+}
+exports.showSubmission = showSubmission;
