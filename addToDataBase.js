@@ -40,5 +40,21 @@ function addNewSubmission(submission) {
         console.error(result);
     });
 }
+function changeSubmission(submission) {
+    var changedSubmission = {
+        Invoice: submission.Invoice,
+        Paid: submission.Paid,
+        PickedUp: submission.PickedUp,
+    };
+    
+    var query = connection.query('UPDATE Submission SET ? WHERE Id=1', changedSubmission, function(err, result) {
+        if(err) {
+            console.error(err);
+            return;
+        }
+        console.error(result);
+    });
+}
 exports.addNewCostumer = addNewCostumer;
 exports.addNewSubmission = addNewSubmission;
+exports.changeSubmission = changeSubmission;

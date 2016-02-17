@@ -12,5 +12,8 @@ handle["/newSubmission"]=requestHandlers.newSubmission;
 handle["/uploadNewSubmission"]=requestHandlers.uploadNewSubmission;
 handle["/changeSubmission"]=requestHandlers.changeSubmission;
 handle["/changeSubmissionFor"]=requestHandlers.changeSubmissionFor;
+handle["/uploadChangeSubmission"]=requestHandlers.uploadChangeSubmission;
+
+
 
 server.start(router.route, handle);

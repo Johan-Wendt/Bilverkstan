@@ -123,9 +123,9 @@ function changeSubmissionFor(response, postData){
     '</head>'+
     '<body>'+
     '<br>' + 
-    '<form action="/changeSubmissionFor" method="post">'+
+    '<form action="/uploadChangeSubmission" method="post">'+
     'Kunds Faktura <br>'+
-    '<input type="text" name="Invoice" /> <br>'+
+    '<input type="text" id="test" name="Invoice" /> <br>'+
     'Kunds Betald <br>'+
     '<input type="text" name="Paid" /> <br>'+
     'Kunds Bil <br>'+
@@ -170,6 +170,14 @@ function uploadNewSubmission(response, postData) {
     addToDataBase.addNewSubmission(post);
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write("You've sent: " + post.C_ID);
+    response.end();
+}
+function uploadChangeSubmission(response, postData) {
+    console.log("Request handler 'uploadNewSubmission' was called.");
+    var post = querystring.parse(postData);
+    addToDataBase.changeSubmission(post);
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.write("You've sent: " + post.Invoice);
     response.end();
 }
 function printResult(response, result, body) {
